@@ -1,0 +1,55 @@
+{% extends 'admin/admin.html' %}
+{% block css %}
+{% endblock %}
+{% block content %}
+        <!--内容-->
+        <section class="content-header">
+            <h1>微电影管理系统</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 标签管理</a></li>
+                <li class="active">添加标签</li>
+            </ol>
+        </section>
+        <section class="content" id="showcontent">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">添加标签</h3>
+                        </div>
+                        <form role="form" method="post" novalidate>
+                            <div class="box-body">
+                                {% for flashed_message in get_flashed_messages(category_filter=["ok"]) %}
+                                <div class="col-md-12" style="color: green">{{ flashed_message }}</div>
+                                {% endfor %}
+                                {% for flashed_message in get_flashed_messages(category_filter=["exit"]) %}
+                                <div class="col-md-12" style="color: red">{{ flashed_message }}</div>
+                                {% endfor %}
+                                <div class="form-group">
+                                    <label for="input_name">{{ tag_form.name.label }}</label>
+                                    {{ tag_form.name }}
+                                </div>
+                            {% for error in tag_form.name.errors %}
+                            <div class="col-md-12" id="input_user" style="color: red">{{ error }}</div>
+                            {% endfor %}
+                            </div>
+                            <div class="box-footer">
+                                {{ tag_form.submit }}
+                            </div>
+                            {{ tag_form.csrf_token }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--内容-->
+{% endblock %}
+{% block js %}
+     <script>
+
+    $(document).ready(function () {
+        $("#g-2").addClass("active");
+        $("#g-2-1").addClass("active");
+    });
+    </script>
+{% endblock %}
